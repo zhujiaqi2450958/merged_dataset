@@ -116,7 +116,8 @@ print("✅ 输出目录创建成功")
 def letterbox_resize(image, target_size=640):
     h, w = image.shape[:2]
     scale = min(target_size / h, target_size / w)
-    new_h, new_w = int(h * scale), int(w * scale)
+    new_h = int(h * scale)
+    new_w = int(w * scale)
     resized = cv2.resize(image, (new_w, new_h))
     canvas = np.full((target_size, target_size, 3), 114, dtype=np.uint8)
     x_offset = (target_size - new_w) // 2
@@ -206,4 +207,46 @@ with open(config_path, 'w', encoding='utf-8') as f:
     f.write(config_content)
 
 print(f"✅ 配置文件已保存: {config_path}")
-print("\n✅ 稀疏数据集预处理完成！")
+
+# ========== 9. 生成预处理报告 txt ==========
+print("\n【7. 生成预处理报告】")
+
+report = f"""
+========================================
+     稀疏数据集 图像预处理与数据集划分报告
+========================================
+
+一、数据统计
+----------------------------------------
+总图片数: {len(valid_images)}
+总标注框: {len(annotations)}
+平均每图: {len(annotations)/len(valid_images):.2f} 个框
+
+二、数据集划分
+----------------------------------------
+训练集: {train_stats[0]} 张, {train_stats[1]} 个框
+验证集: {val_stats[0]} 张, {val_stats[1]} 个框
+测试集: {test_stats[0]} 张, {test_stats[1]} 个框
+
+三、预处理参数
+----------------------------------------
+目标尺寸: {IMAGE_SIZE} x {IMAGE_SIZE}
+缩放方法: Letterbox (保持宽高比)
+
+四、输出目录
+----------------------------------------
+{OUTPUT_DIR}/
+"""
+
+report_path = os.path.join(BASE_DIR, 'preprocess_report_sparse.txt')
+with open(report_path, 'w', encoding='utf-8') as f:
+    f.write(report)
+
+print(report)
+print("\n" + "="*60)
+print("✅ 稀疏数据集预处理完成！")
+print("="*60)
+print(f"\n生成文件：")
+print(f"  1. {OUTPUT_DIR}/")
+print(f"  2. {config_path}")
+print(f"  3. {report_path}")

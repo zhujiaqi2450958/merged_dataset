@@ -1,0 +1,30 @@
+# ===================== 屏蔽压缩包、临时数据文件 =====================
+*.zip
+*.rar
+*.7z
+*.csv
+*.txt
+*.png
+*.jpg
+*.jpeg
+*.bmp
+preprocess_report*.txt
+
+# ===================== 屏蔽训练结果和缓存 =====================
+runs/
+*.log
+__pycache__/
+*.pyc
+
+# ===================== 屏蔽本地配置和虚拟环境 =====================
+.vscode/
+.venv/
+venv/
+
+# ===================== 屏蔽所有数据集文件夹 =====================
+images/
+processed_dataset*/
+low_light_dataset/
+crowded/
+sparse/
+test_scenes/

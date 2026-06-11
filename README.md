@@ -43,24 +43,27 @@ merged_dataset/
 git clone https://github.com/zhujiaqi2450958/merged_dataset.git
 cd merged_dataset
 
-# 安装所有依赖
+
+## 安装所有依赖
 pip install -r requirements.txt
+```
 
 ### 使用说明
 1.  **数据预处理**
     执行通用数据预处理脚本，对图像和标注进行清洗、格式转换：
     ```bash
     python code/preprocess/yuchuli.py
-
+    ```
 2.  **低光照图像增强**
     对低光照场景的图像进行亮度和细节增强：
     ```bash
     python code/analysis/predict.py
-
+    ```
 3.  **启动可视化 GUI 界面**
     运行交互界面，加载模型并对图像进行目标检测：
     ```bash
     python demo_gui_modified.py
+    ```
 
 ## 注意事项
 1.  运行前请检查 `configs/` 目录下的 `.yaml` 配置文件，确保里面的数据集路径和你本地实际路径一致；

@@ -1,6 +1,0 @@
-
-path: C:/Users/LX/Desktop/merged_dataset/processed_dataset_crowded
-train: images/train
-val: images/val
-nc: 1
-names: ['person']

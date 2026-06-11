@@ -1,7 +1,0 @@
-# YOLO dataset for 低光照 scenes
-path: D:/StudyinG/PythonStudy/low_light_dataset
-train: images/train
-val: images/val
-test: images/test
-nc: 1
-names: ['person']
